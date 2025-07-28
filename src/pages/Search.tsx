@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Search as SearchIcon, ArrowLeft } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import Header from "@/components/shared/Header";
 
 // Mock data for Philadelphia users
 const mockUsers = [
@@ -16,13 +17,23 @@ const mockUsers = [
 ];
 
 const Search = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchParams] = useSearchParams();
+  const [searchQuery, setSearchQuery] = useState(searchParams.get('q') || "");
   const [searchResults, setSearchResults] = useState(mockUsers);
   const navigate = useNavigate();
 
-  const handleSearch = () => {
+  useEffect(() => {
+    const query = searchParams.get('q') || "";
+    setSearchQuery(query);
+    if (query) {
+      handleSearch(query);
+    }
+  }, [searchParams]);
+
+  const handleSearch = (query?: string) => {
+    const searchTerm = query || searchQuery;
     const filtered = mockUsers.filter(user =>
-      user.name.toLowerCase().includes(searchQuery.toLowerCase())
+      user.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setSearchResults(filtered);
   };
@@ -33,19 +44,7 @@ const Search = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-border">
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => navigate("/")}
-          className="h-10 w-10"
-        >
-          <ArrowLeft className="h-5 w-5" />
-        </Button>
-        <h1 className="text-lg font-semibold text-foreground">Search People</h1>
-        <div className="w-10" />
-      </div>
+      <Header />
 
       {/* Search Bar */}
       <div className="p-4">
@@ -60,7 +59,7 @@ const Search = () => {
               onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
             />
           </div>
-          <Button onClick={handleSearch} className="px-6">
+          <Button onClick={() => handleSearch()} className="px-6">
             Search
           </Button>
         </div>

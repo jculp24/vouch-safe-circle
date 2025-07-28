@@ -1,17 +1,25 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Search, Users, Shield } from "lucide-react";
+import { Users, Shield, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Input } from "@/components/ui/input";
+import Header from "@/components/shared/Header";
 
 const Index = () => {
   const navigate = useNavigate();
 
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const query = formData.get('search') as string;
+    if (query.trim()) {
+      navigate(`/search?q=${encodeURIComponent(query.trim())}`);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="flex items-center justify-center p-6 border-b border-border">
-        <h1 className="text-2xl font-bold text-primary">Good Company</h1>
-      </div>
+      <Header />
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col items-center justify-center p-6 space-y-6">
@@ -24,22 +32,25 @@ const Index = () => {
           </p>
         </div>
 
+        {/* Search Bar */}
+        <form onSubmit={handleSearch} className="w-full max-w-md">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+            <Input
+              name="search"
+              type="text"
+              placeholder="Search people in Philadelphia..."
+              className="pl-10 h-12"
+            />
+          </div>
+        </form>
+
         {/* Action Cards */}
         <div className="w-full max-w-sm space-y-4">
           <Card 
             className="cursor-pointer hover:shadow-md transition-shadow"
-            onClick={() => navigate("/search")}
+            onClick={() => navigate("/my-profile")}
           >
-            <CardContent className="p-6 text-center">
-              <Search className="h-12 w-12 text-primary mx-auto mb-3" />
-              <h3 className="font-semibold text-foreground mb-2">Search People</h3>
-              <p className="text-sm text-muted-foreground">
-                Find and verify people in Philadelphia
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="cursor-pointer hover:shadow-md transition-shadow">
             <CardContent className="p-6 text-center">
               <Users className="h-12 w-12 text-primary mx-auto mb-3" />
               <h3 className="font-semibold text-foreground mb-2">My Profile</h3>
@@ -49,7 +60,10 @@ const Index = () => {
             </CardContent>
           </Card>
 
-          <Card className="cursor-pointer hover:shadow-md transition-shadow">
+          <Card 
+            className="cursor-pointer hover:shadow-md transition-shadow"
+            onClick={() => navigate("/safety")}
+          >
             <CardContent className="p-6 text-center">
               <Shield className="h-12 w-12 text-primary mx-auto mb-3" />
               <h3 className="font-semibold text-foreground mb-2">Safety Center</h3>
