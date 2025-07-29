@@ -6,6 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Shield, Users } from "lucide-react";
 import Header from "@/components/shared/Header";
+import SocialMediaLinks from "@/components/profile/SocialMediaLinks";
 
 // Mock data
 const mockUser = {
@@ -22,6 +23,28 @@ const mockUser = {
     { id: 3, name: "Tom Brown", relationship: "Family", duration: "5+ years", avatar: "/placeholder.svg" },
     { id: 4, name: "Lisa Park", relationship: "Friend", duration: "3 years", avatar: "/placeholder.svg" },
     { id: 5, name: "John Davis", relationship: "Acquaintance", duration: "6 months", avatar: "/placeholder.svg" },
+  ],
+  socialMediaLinks: [
+    { 
+      id: "1", 
+      platform: "instagram" as const, 
+      url: "https://instagram.com/sarah.johnson", 
+      addedBy: "user123", 
+      addedByName: "Alex Smith", 
+      addedAt: "2024-01-15", 
+      verified: true, 
+      reportCount: 0 
+    },
+    { 
+      id: "2", 
+      platform: "linkedin" as const, 
+      url: "https://linkedin.com/in/sarah-johnson-philly", 
+      addedBy: "user456", 
+      addedByName: "Maria Garcia", 
+      addedAt: "2024-01-20", 
+      verified: false, 
+      reportCount: 0 
+    }
   ]
 };
 
@@ -75,6 +98,15 @@ const Profile = () => {
             <Button onClick={handleEndorse} className="w-full">
               Endorse This Person
             </Button>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Social Media Links */}
+      <div className="px-4 mt-4">
+        <Card>
+          <CardContent className="p-6">
+            <SocialMediaLinks links={mockUser.socialMediaLinks} />
           </CardContent>
         </Card>
       </div>
