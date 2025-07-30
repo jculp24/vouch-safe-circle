@@ -1,73 +1,229 @@
-# Welcome to your Lovable project
+# Good Company
 
-## Project info
+A social platform focused on building trust and verifying authentic connections between people through endorsements and identity verification.
 
-**URL**: https://lovable.dev/projects/08983033-30c0-441c-83f9-f38dcb833346
+## 🎯 App Overview
 
-## How can I edit this code?
+Good Company is a unique social platform designed to help people establish and verify their reputation through authentic endorsements from real connections. The platform emphasizes trust, safety, and genuine relationships by implementing identity verification and a comprehensive endorsement system.
 
-There are several ways of editing your application.
+### Core Purpose
+- **Trust Building**: Enable users to build verifiable reputations through endorsements
+- **Identity Verification**: Implement robust verification through government ID and biometric checks
+- **Safe Connections**: Create a safer environment for meeting new people through verified identities
+- **Relationship Tracking**: Document and validate real-world relationships and connections
 
-**Use Lovable**
+## ✨ Key Features
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/08983033-30c0-441c-83f9-f38dcb833346) and start prompting.
+### 🔍 User Discovery & Search
+- **Advanced Search**: Find people by name, location, interests, and verification status
+- **Profile Discovery**: Browse verified user profiles with endorsement history
+- **Safety Filters**: Filter results by verification level and safety ratings
 
-Changes made via Lovable will be committed automatically to this repo.
+### 👤 Profile Management
+- **Comprehensive Profiles**: Detailed user profiles with photos, bio, and verification badges
+- **Social Media Integration**: Link and verify social media accounts
+- **Good Company Score**: Dynamic reputation scoring based on endorsements and verification
+- **Privacy Controls**: Granular privacy settings for profile visibility
 
-**Use your preferred IDE**
+### 🤝 Endorsement System
+- **Relationship Endorsements**: Get endorsed by friends, colleagues, family, and romantic partners
+- **Relationship Categories**: Different endorsement types (friend, colleague, family, romantic)
+- **Duration Tracking**: Record how long relationships have lasted
+- **Mutual Verification**: Both parties can confirm relationship details
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 🛡️ Identity Verification
+- **Government ID Verification**: Upload and verify driver's license or state ID
+- **Biometric Verification**: Selfie capture for facial recognition matching
+- **Multi-Step Process**: Comprehensive verification workflow for maximum security
+- **Verification Badges**: Visual indicators of verification status
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### 🔐 Safety & Security
+- **Safety Center**: Comprehensive safety guidelines and reporting tools
+- **Verification Requirements**: Multiple verification levels for different features
+- **Report System**: Community-driven reporting for inappropriate behavior
+- **Privacy Protection**: Advanced privacy controls and data protection
 
-Follow these steps:
+### 💎 Subscription Tiers
+- **Free Tier**: Basic profile and limited endorsements
+- **Premium Tiers**: Enhanced features, unlimited endorsements, advanced search
+- **Verification Access**: Premium features for verified users
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## 🛠️ Technical Architecture
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Tech Stack
+- **Frontend**: React 18 with TypeScript
+- **Styling**: Tailwind CSS with custom design system
+- **UI Components**: shadcn/ui component library
+- **Routing**: React Router v6
+- **State Management**: React Query for server state
+- **Build Tool**: Vite
+- **Backend**: Supabase (Database, Auth, Storage, Edge Functions)
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+### Project Structure
+```
+src/
+├── components/
+│   ├── ui/                    # shadcn/ui components
+│   ├── shared/               # Shared components (Header, etc.)
+│   ├── profile/              # Profile-related components
+│   └── verification/         # Identity verification components
+├── pages/                    # Route components
+├── hooks/                    # Custom React hooks
+├── lib/                      # Utility functions
+└── assets/                   # Static assets
 ```
 
-**Edit a file directly in GitHub**
+### Design System
+- **CSS Variables**: Comprehensive theming with light/dark mode support
+- **Semantic Tokens**: Color, spacing, and typography tokens
+- **Component Variants**: Extensible component variant system
+- **Responsive Design**: Mobile-first responsive approach
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 📱 Pages & Routes
 
-**Use GitHub Codespaces**
+| Route | Component | Description |
+|-------|-----------|-------------|
+| `/` | `Index` | Landing page with search and sign-up |
+| `/search` | `Search` | User search with filters and results |
+| `/profile/:id` | `Profile` | View other user profiles |
+| `/my-profile` | `MyProfile` | Current user's profile management |
+| `/settings` | `Settings` | Account and privacy settings |
+| `/safety` | `Safety` | Safety center and guidelines |
+| `/verification` | `Verification` | Identity verification process |
+| `/subscription` | `Subscription` | Subscription management |
+| `/*` | `NotFound` | 404 error page |
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🧩 Component Library
 
-## What technologies are used for this project?
+### UI Components (shadcn/ui)
+- **Forms**: Input, textarea, select, checkbox, radio groups
+- **Navigation**: Buttons, links, breadcrumbs, pagination
+- **Feedback**: Alerts, toasts, progress indicators
+- **Overlays**: Modals, dialogs, popovers, tooltips
+- **Data Display**: Cards, tables, badges, avatars
+- **Layout**: Sheets, separators, scroll areas
 
-This project is built with:
+### Custom Components
+- **Header**: Navigation with search and user controls
+- **SocialMediaLinks**: Social media profile management
+- **AddSocialMediaModal**: Modal for adding social media links
+- **DLUpload**: Driver's license upload component
+- **SelfieCapture**: Selfie capture for verification
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🚧 Current Status
 
-## How can I deploy this project?
+### ✅ Implemented (Frontend)
+- Complete UI/UX design system
+- All page layouts and navigation
+- Component library with variants
+- Responsive design for all screen sizes
+- Mock data and placeholder functionality
+- Search interface and filters
+- Profile display and management UI
+- Identity verification workflow UI
+- Social media integration UI
 
-Simply open [Lovable](https://lovable.dev/projects/08983033-30c0-441c-83f9-f38dcb833346) and click on Share -> Publish.
+### ❌ Needs Backend Integration
+- **Authentication**: User registration, login, session management
+- **Database**: User profiles, endorsements, verifications
+- **File Storage**: Profile photos, ID uploads, selfies
+- **API Endpoints**: All CRUD operations
+- **Payment Processing**: Subscription management
+- **Email Services**: Verification, notifications
+- **Identity Verification**: ID validation, facial recognition
+- **Search Engine**: Real-time user search functionality
 
-## Can I connect a custom domain to my Lovable project?
+## 🚀 Development Setup
 
-Yes, you can!
+### Prerequisites
+- Node.js 18+ and npm
+- Git for version control
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### Installation
+```bash
+# Clone the repository
+git clone <repository-url>
+cd good-company
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+### Environment Variables
+```env
+# Supabase Configuration (when backend is integrated)
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+
+# Stripe Configuration (for payments)
+VITE_STRIPE_PUBLISHABLE_KEY=your_stripe_key
+```
+
+## 🔮 Future Development
+
+### Phase 1: Core Backend (Priority)
+- [ ] Supabase authentication integration
+- [ ] Database schema implementation
+- [ ] User profile CRUD operations
+- [ ] File upload and storage
+- [ ] Basic API endpoints
+
+### Phase 2: Core Features
+- [ ] Endorsement system implementation
+- [ ] Real-time search functionality
+- [ ] Identity verification processing
+- [ ] Social media link verification
+- [ ] Email notification system
+
+### Phase 3: Advanced Features
+- [ ] Payment integration (Stripe)
+- [ ] Advanced search algorithms
+- [ ] AI-powered safety features
+- [ ] Mobile app development
+- [ ] API rate limiting and security
+
+### Phase 4: Scale & Optimize
+- [ ] Performance optimization
+- [ ] Advanced analytics
+- [ ] Machine learning for trust scoring
+- [ ] Enterprise features
+- [ ] International expansion
+
+## 🔌 API Integration Notes
+
+### Required Supabase Setup
+```sql
+-- Core tables needed:
+- profiles (user data)
+- endorsements (relationship data)
+- social_media_links (social profiles)
+- verifications (ID verification)
+- subscriptions (payment data)
+```
+
+### Third-Party Integrations
+- **Stripe**: Payment processing and subscription management
+- **ID Verification Service**: Government ID validation
+- **Facial Recognition**: Biometric verification
+- **Email Service**: Transactional emails and notifications
+
+## 📄 License
+
+This project is proprietary software. All rights reserved.
+
+## 🤝 Contributing
+
+This is a private project. For development questions or issues, please contact the development team.
+
+---
+
+**Note**: This application is currently in development. The frontend UI is complete, but backend integration with Supabase is required for full functionality.
