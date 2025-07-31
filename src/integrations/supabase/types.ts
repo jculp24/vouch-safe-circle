@@ -14,7 +14,214 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      endorsements: {
+        Row: {
+          created_at: string
+          duration: string | null
+          endorsed_id: string
+          endorsement_text: string | null
+          endorser_id: string
+          id: string
+          relationship_type: string
+        }
+        Insert: {
+          created_at?: string
+          duration?: string | null
+          endorsed_id: string
+          endorsement_text?: string | null
+          endorser_id: string
+          id?: string
+          relationship_type: string
+        }
+        Update: {
+          created_at?: string
+          duration?: string | null
+          endorsed_id?: string
+          endorsement_text?: string | null
+          endorser_id?: string
+          id?: string
+          relationship_type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "endorsements_endorsed_id_fkey"
+            columns: ["endorsed_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+          {
+            foreignKeyName: "endorsements_endorser_id_fkey"
+            columns: ["endorser_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          age: number | null
+          avatar_url: string | null
+          bio: string | null
+          created_at: string
+          endorsement_count: number | null
+          good_company_score: number | null
+          id: string
+          is_verified: boolean | null
+          location: string | null
+          name: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          age?: number | null
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          endorsement_count?: number | null
+          good_company_score?: number | null
+          id?: string
+          is_verified?: boolean | null
+          location?: string | null
+          name: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          age?: number | null
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          endorsement_count?: number | null
+          good_company_score?: number | null
+          id?: string
+          is_verified?: boolean | null
+          location?: string | null
+          name?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      social_media_links: {
+        Row: {
+          added_by_user_id: string
+          created_at: string
+          id: string
+          is_verified: boolean | null
+          platform: string
+          profile_user_id: string
+          report_count: number | null
+          url: string
+        }
+        Insert: {
+          added_by_user_id: string
+          created_at?: string
+          id?: string
+          is_verified?: boolean | null
+          platform: string
+          profile_user_id: string
+          report_count?: number | null
+          url: string
+        }
+        Update: {
+          added_by_user_id?: string
+          created_at?: string
+          id?: string
+          is_verified?: boolean | null
+          platform?: string
+          profile_user_id?: string
+          report_count?: number | null
+          url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "social_media_links_added_by_user_id_fkey"
+            columns: ["added_by_user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+          {
+            foreignKeyName: "social_media_links_profile_user_id_fkey"
+            columns: ["profile_user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+        ]
+      }
+      user_searches: {
+        Row: {
+          created_at: string
+          id: string
+          results_count: number | null
+          search_query: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          results_count?: number | null
+          search_query: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          results_count?: number | null
+          search_query?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_searches_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+        ]
+      }
+      verification_records: {
+        Row: {
+          created_at: string
+          dl_photo_url: string | null
+          id: string
+          selfie_photo_url: string | null
+          status: string | null
+          user_id: string
+          verified_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          dl_photo_url?: string | null
+          id?: string
+          selfie_photo_url?: string | null
+          status?: string | null
+          user_id: string
+          verified_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          dl_photo_url?: string | null
+          id?: string
+          selfie_photo_url?: string | null
+          status?: string | null
+          user_id?: string
+          verified_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "verification_records_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
