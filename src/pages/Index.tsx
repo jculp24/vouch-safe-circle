@@ -2,11 +2,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Users, Shield, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 import { Input } from "@/components/ui/input";
 import Header from "@/components/shared/Header";
 
 const Index = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -76,9 +78,23 @@ const Index = () => {
 
         {/* Sign In/Up Button */}
         <div className="w-full max-w-sm mt-8">
-          <Button className="w-full" size="lg">
-            Sign In / Create Account
-          </Button>
+          {user ? (
+            <Button 
+              className="w-full" 
+              size="lg"
+              onClick={() => navigate('/my-profile')}
+            >
+              View My Profile
+            </Button>
+          ) : (
+            <Button 
+              className="w-full" 
+              size="lg"
+              onClick={() => navigate('/auth')}
+            >
+              Sign In / Create Account
+            </Button>
+          )}
         </div>
       </div>
 
